@@ -65,6 +65,9 @@ dependencies {
     implementation(libs.androidx.navigation.runtime)
     implementation(libs.androidx.navigation.ui)
 
+    implementation(libs.glide)
+
+    ksp(libs.glide.compiler)
     ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)
