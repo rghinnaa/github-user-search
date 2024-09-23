@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.jetbrainsKotlinKSP)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -33,15 +35,33 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
+    }
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    implementation(libs.squareup.retrofit)
+    implementation(libs.squareup.okhttp)
+    implementation(libs.squareup.gson)
+
+    implementation(libs.hilt)
+    implementation(libs.hilt.compiler)
+    implementation(libs.hilt.navigation)
+
+    implementation(libs.androidx.viewmodel.ktx)
+    implementation(libs.androidx.viewmodel.runtime)
+    implementation(libs.androidx.lifecycle)
+    implementation(libs.androidx.livedata.ktx)
+    implementation(libs.androidx.paging)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
