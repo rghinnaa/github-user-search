@@ -8,6 +8,8 @@ class MainRepository(
 ) : MainSourceCallback {
     private val remoteDataSource = mainRemoteDataSource
 
+    override fun requestUserList(token: String) = remoteDataSource.requestUserPaging(token)
+
     override fun requestUserSearch(
         token: String,
         key: String

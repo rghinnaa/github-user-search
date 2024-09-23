@@ -11,6 +11,13 @@ import retrofit2.http.Query
 
 interface ApiCallback {
 
+    @GET(Const.Network.USER)
+    suspend fun userList(
+        @Header("Authorization") token: String,
+        @Query("page") page: Int,
+        @Query("per_page") perPage: Int
+    ): Response<List<SearchUserResponse.Item>>
+
     @GET(Const.Network.SEARCH_USER)
     suspend fun userSearch(
         @Header("Authorization") token: String,

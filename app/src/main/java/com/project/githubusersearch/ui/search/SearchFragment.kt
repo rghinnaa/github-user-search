@@ -50,6 +50,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     private fun initView() {
         initSearchImeOption()
         initAdapter()
+        initUserListCallback()
     }
 
     private fun initAdapter() {
@@ -58,9 +59,20 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         )
 
         searchAdapter.setOnItemClickListener {
+            binding.etSearch.setText("")
             navController.navigateOrNull(
                 SearchFragmentDirections.actionUserDetail(it.login)
             )
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun initUserListCallback() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.requestUserListPaging().observe(viewLifecycleOwner) { result ->
+                searchAdapter.submitData(lifecycle, result)
+                searchAdapter.notifyDataSetChanged()
+            }
         }
     }
 

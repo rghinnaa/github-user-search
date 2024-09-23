@@ -5,6 +5,7 @@ object Const {
     const val APP_TOKEN = "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"
 
     object Network {
+        const val USER = "users"
         const val SEARCH_USER = "search/users"
         const val DETAIL_USER = "users/{username}"
     }

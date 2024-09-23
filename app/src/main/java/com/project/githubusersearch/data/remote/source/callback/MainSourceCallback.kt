@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface MainSourceCallback {
 
+    fun requestUserList(token: String): Flow<PagingData<SearchUserResponse.Item>>
+
     fun requestUserSearch(token: String, key: String): Flow<PagingData<SearchUserResponse.Item>>
 
     fun requestUserDetail(token: String, username: String): Flow<Result<DetailUserResponse>>

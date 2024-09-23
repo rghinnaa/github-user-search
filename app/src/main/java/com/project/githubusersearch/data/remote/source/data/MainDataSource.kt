@@ -5,6 +5,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.project.githubusersearch.data.remote.api.ApiCallback
 import com.project.githubusersearch.data.remote.source.data.paging.SearchUserPagingSource
+import com.project.githubusersearch.data.remote.source.data.paging.UserPagingSource
 import com.project.githubusersearch.util.Const
 import com.project.githubusersearch.util.flowResponse
 import kotlinx.coroutines.Dispatchers
@@ -13,6 +14,21 @@ import kotlinx.coroutines.flow.flowOn
 
 class MainDataSource(callback: ApiCallback) {
     private val apiCallback = callback
+
+    fun requestUserPaging(
+        token: String
+    ) = Pager(
+        config = PagingConfig(Const.Paging.PER_PAGE_SMALL)
+    ) {
+        UserPagingSource(
+            apiCallback,
+            token
+        )
+    }.flow
+        .flowOn(Dispatchers.IO)
+        .catch { throwable ->
+            Log.e("error", throwable.toString())
+        }
 
     fun requestSearchUserPaging(
         token: String,
