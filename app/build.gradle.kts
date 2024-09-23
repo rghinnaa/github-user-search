@@ -51,9 +51,9 @@ dependencies {
     implementation(libs.squareup.retrofit)
     implementation(libs.squareup.okhttp)
     implementation(libs.squareup.gson)
+    implementation(libs.squareup.moshi)
 
     implementation(libs.hilt)
-    implementation(libs.hilt.compiler)
     implementation(libs.hilt.navigation)
 
     implementation(libs.androidx.viewmodel.ktx)
@@ -61,6 +61,11 @@ dependencies {
     implementation(libs.androidx.lifecycle)
     implementation(libs.androidx.livedata.ktx)
     implementation(libs.androidx.paging)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.runtime)
+    implementation(libs.androidx.navigation.ui)
+
+    ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
