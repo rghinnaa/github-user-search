@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivUser"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_64dp"
+        android:layout_marginStart="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_16dp"
+        android:contentDescription="@string/cd_user_profile"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivUser"
+        app:layout_constraintTop_toTopOf="@id/ivUser" />
+
+    <TextView
+        android:id="@+id/tvCompany"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12dp"
+        android:layout_marginTop="@dimen/_4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivUser"
+        app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12dp"
+        android:layout_marginTop="@dimen/_4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivUser"
+        app:layout_constraintTop_toBottomOf="@id/tvCompany" />
+
+    <TextView
+        android:id="@+id/tvBioTitle"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12dp"
+        android:layout_marginTop="@dimen/_8dp"
+        android:text="@string/Bio"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivUser"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/tvBio"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12dp"
+        android:layout_marginTop="@dimen/_4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvBioTitle" />
+
+    <View
+        android:id="@+id/vBorderTop"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_1dp"
+        android:layout_marginStart="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_12dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        android:background="@color/done_muted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvBio" />
+
+    <TextView
+        android:id="@+id/tvRepository"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12dp"
+        android:layout_marginTop="@dimen/_12dp"
+        app:layout_constraintEnd_toStartOf="@id/tvFollowersTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vBorderTop" />
+
+    <TextView
+        android:id="@+id/tvRepositoryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12dp"
+        android:layout_marginTop="@dimen/_4dp"
+        android:text="@string/repositories"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@id/tvRepository"
+        app:layout_constraintStart_toStartOf="@id/tvRepository"
+        app:layout_constraintTop_toBottomOf="@id/tvRepository"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/tvFollowers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12dp"
+        android:layout_marginTop="@dimen/_12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vBorderTop" />
+
+    <TextView
+        android:id="@+id/tvFollowersTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12dp"
+        android:layout_marginTop="@dimen/_4dp"
+        android:text="@string/followers"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@id/tvFollowers"
+        app:layout_constraintStart_toStartOf="@id/tvFollowers"
+        app:layout_constraintTop_toBottomOf="@id/tvFollowers"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/tvFollowing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12dp"
+        android:layout_marginTop="@dimen/_4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvFollowersTitle"
+        app:layout_constraintTop_toBottomOf="@id/vBorderTop" />
+
+    <TextView
+        android:id="@+id/tvFollowingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12dp"
+        android:layout_marginTop="@dimen/_12dp"
+        android:text="@string/following"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@id/tvFollowing"
+        app:layout_constraintStart_toStartOf="@id/tvFollowing"
+        app:layout_constraintTop_toBottomOf="@id/tvFollowing"
+        tools:ignore="SmallSp" />
+
+    <View
+        android:id="@+id/vBorderBottom"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_1dp"
+        android:layout_marginStart="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_12dp"
+        android:layout_marginEnd="@dimen/_16dp"
+        android:background="@color/done_muted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFollowingTitle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
