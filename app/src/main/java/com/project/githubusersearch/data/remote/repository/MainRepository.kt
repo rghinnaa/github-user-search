@@ -12,4 +12,9 @@ class MainRepository(
         token: String,
         key: String
     ) = remoteDataSource.requestSearchUserPaging(token, key)
+
+    override fun requestUserDetail(
+        token: String,
+        username: String
+    ) = remoteDataSource.requestDetailUser(token, username)
 }

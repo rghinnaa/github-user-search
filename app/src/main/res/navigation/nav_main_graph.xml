@@ -7,8 +7,28 @@
 
     <fragment
         android:id="@+id/search_fragment"
-        android:name="com.project.githubusersearch.ui.SearchFragment"
+        android:name="com.project.githubusersearch.ui.search.SearchFragment"
         android:label="Search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search">
+
+        <action
+            android:id="@+id/actionUserDetail"
+            app:destination="@id/user_detail_fragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/user_detail_fragment"
+        android:name="com.project.githubusersearch.ui.detail.UserDetailFragment"
+        android:label="User Detail"
+        tools:layout="@layout/fragment_user_detail">
+
+        <argument
+            android:name="username"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+    </fragment>
 
 </navigation>

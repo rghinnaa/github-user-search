@@ -1,4 +1,4 @@
-package com.project.githubusersearch.ui
+package com.project.githubusersearch.ui.search
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -13,6 +13,8 @@ import com.project.githubusersearch.databinding.FragmentSearchBinding
 import com.project.githubusersearch.ui.adapter.PagingLoadStateAdapter
 import com.project.githubusersearch.ui.adapter.SearchPagingAdapter
 import com.project.githubusersearch.util.hideKeyboard
+import com.project.githubusersearch.util.navController
+import com.project.githubusersearch.util.navigateOrNull
 import com.project.githubusersearch.util.viewBinding
 import com.project.githubusersearch.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,6 +56,12 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         binding.rvUser.adapter = searchAdapter.withLoadStateFooter(
             PagingLoadStateAdapter { searchAdapter.retry() }
         )
+
+        searchAdapter.setOnItemClickListener {
+            navController.navigateOrNull(
+                SearchFragmentDirections.actionUserDetail(it.login)
+            )
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

@@ -6,6 +6,7 @@ import androidx.paging.PagingConfig
 import com.project.githubusersearch.data.remote.api.ApiCallback
 import com.project.githubusersearch.data.remote.source.data.paging.SearchUserPagingSource
 import com.project.githubusersearch.util.Const
+import com.project.githubusersearch.util.flowResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
@@ -29,5 +30,9 @@ class MainDataSource(callback: ApiCallback) {
         .catch { throwable ->
             Log.e("error", throwable.toString())
         }
+
+    fun requestDetailUser(token: String, username: String) = flowResponse {
+        apiCallback.userDetail(token, username)
+    }
 
 }

@@ -6,6 +6,7 @@ object Const {
 
     object Network {
         const val SEARCH_USER = "search/users"
+        const val DETAIL_USER = "users/{username}"
     }
 
     object Paging {
