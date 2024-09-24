@@ -7,6 +7,7 @@ import androidx.paging.PagingConfig
 import com.project.githubusersearch.data.local.GithubUserDatabase
 import com.project.githubusersearch.data.remote.api.ApiCallback
 import com.project.githubusersearch.data.remote.source.data.mediator.UserListMediator
+import com.project.githubusersearch.data.remote.source.data.paging.RepositoryUserPagingSource
 import com.project.githubusersearch.data.remote.source.data.paging.SearchUserPagingSource
 import com.project.githubusersearch.util.Const
 import com.project.githubusersearch.util.flowResponse
@@ -48,5 +49,22 @@ class MainDataSource(callback: ApiCallback, githubUserDatabase: GithubUserDataba
     fun requestDetailUser(token: String, username: String) = flowResponse {
         apiCallback.userDetail(token, username)
     }
+
+    fun requestRepositoryUserPaging(
+        token: String,
+        username: String
+    ) = Pager(
+        config = PagingConfig(Const.Paging.PER_PAGE_SMALL)
+    ) {
+        RepositoryUserPagingSource(
+            apiCallback,
+            token,
+            username
+        )
+    }.flow
+        .flowOn(Dispatchers.IO)
+        .catch { throwable ->
+            Log.e("error", throwable.toString())
+        }
 
 }

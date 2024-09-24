@@ -6,4 +6,6 @@
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="repositories">Repository</string>
+    <string name="update_at">Updated At %s</string>
+    <string name="public_repositories">Public Repositories</string>
 </resources>

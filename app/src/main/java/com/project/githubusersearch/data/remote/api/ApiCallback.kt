@@ -1,6 +1,7 @@
 package com.project.githubusersearch.data.remote.api
 
 import com.project.githubusersearch.data.remote.model.DetailUserResponse
+import com.project.githubusersearch.data.remote.model.PublicRepositoryUserResponse
 import com.project.githubusersearch.data.remote.model.SearchUserResponse
 import com.project.githubusersearch.util.Const
 import retrofit2.Response
@@ -31,5 +32,13 @@ interface ApiCallback {
         @Header("Authorization") token: String,
         @Path("username") username: String
     ): Response<DetailUserResponse>
+
+    @GET(Const.Network.PUBLIC_REPOSITORY_USER)
+    suspend fun userPublicRepository(
+        @Header("Authorization") token: String,
+        @Path("username") username: String,
+        @Query("page") page: Int?,
+        @Query("per_page") perPage: Int
+    ): Response<List<PublicRepositoryUserResponse>>
 
 }
