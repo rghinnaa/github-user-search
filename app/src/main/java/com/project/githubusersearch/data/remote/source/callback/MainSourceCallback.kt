@@ -1,6 +1,7 @@
 package com.project.githubusersearch.data.remote.source.callback
 
 import androidx.paging.PagingData
+import com.project.githubusersearch.data.local.entity.User
 import com.project.githubusersearch.data.remote.Result
 import com.project.githubusersearch.data.remote.model.DetailUserResponse
 import com.project.githubusersearch.data.remote.model.SearchUserResponse
@@ -8,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface MainSourceCallback {
 
-    fun requestUserList(token: String): Flow<PagingData<SearchUserResponse.Item>>
+    fun requestUserList(token: String): Flow<PagingData<User>>
 
     fun requestUserSearch(token: String, key: String): Flow<PagingData<SearchUserResponse.Item>>
 

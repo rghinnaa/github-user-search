@@ -17,7 +17,7 @@ class SearchUserPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int,  SearchUserResponse.Item> {
         return try {
-            val nextPage = params.key ?: 0
+            val nextPage = params.key ?: 1
 
             val response = apiCallback.userSearch(
                 token,

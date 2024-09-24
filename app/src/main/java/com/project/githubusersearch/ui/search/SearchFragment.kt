@@ -12,6 +12,7 @@ import com.project.githubusersearch.R
 import com.project.githubusersearch.databinding.FragmentSearchBinding
 import com.project.githubusersearch.ui.adapter.PagingLoadStateAdapter
 import com.project.githubusersearch.ui.adapter.SearchPagingAdapter
+import com.project.githubusersearch.ui.adapter.UserPagingAdapter
 import com.project.githubusersearch.util.hideKeyboard
 import com.project.githubusersearch.util.navController
 import com.project.githubusersearch.util.navigateOrNull
@@ -27,6 +28,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     private val viewModel by viewModels<MainViewModel>()
 
     private val searchAdapter = SearchPagingAdapter()
+    private val userAdapter = UserPagingAdapter()
 
     private var key = ""
 
@@ -49,11 +51,10 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun initView() {
         initSearchImeOption()
-        initAdapter()
-        initUserListCallback()
+        initUserCallback()
     }
 
-    private fun initAdapter() {
+    private fun initSearchAdapter() {
         binding.rvUser.adapter = searchAdapter.withLoadStateFooter(
             PagingLoadStateAdapter { searchAdapter.retry() }
         )
@@ -66,12 +67,26 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         }
     }
 
+    private fun initUserAdapter() {
+        binding.rvUser.adapter = userAdapter.withLoadStateFooter(
+            PagingLoadStateAdapter { userAdapter.retry() }
+        )
+
+        userAdapter.setOnItemClickListener {
+            binding.etSearch.setText("")
+            navController.navigateOrNull(
+                SearchFragmentDirections.actionUserDetail(it.username)
+            )
+        }
+    }
+
     @SuppressLint("NotifyDataSetChanged")
-    private fun initUserListCallback() {
+    private fun initUserCallback() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.requestUserListPaging().observe(viewLifecycleOwner) { result ->
-                searchAdapter.submitData(lifecycle, result)
-                searchAdapter.notifyDataSetChanged()
+            viewModel.requestUserListPaging.observe(viewLifecycleOwner) { result ->
+                initUserAdapter()
+                userAdapter.submitData(lifecycle, result)
+                userAdapter.notifyDataSetChanged()
             }
         }
     }
@@ -80,6 +95,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     private fun initSearchCallback() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.requestSearchUserPaging(key).observe(viewLifecycleOwner) { result ->
+                initSearchAdapter()
                 searchAdapter.submitData(lifecycle, result)
                 searchAdapter.notifyDataSetChanged()
             }

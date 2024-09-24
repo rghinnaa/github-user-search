@@ -23,13 +23,16 @@ class MainViewModel @Inject constructor(
     private var _userDetail: MutableLiveData<Result<DetailUserResponse>> = MutableLiveData()
     val userDetail: LiveData<Result<DetailUserResponse>> get() = _userDetail
 
-    fun requestUserListPaging() = repository.requestUserList(Const.APP_TOKEN).asLiveData()
-
     fun requestSearchUserPaging(key: String) = repository.requestUserSearch(Const.APP_TOKEN, key).asLiveData()
 
     fun requestDetailUser(username: String) = repository.requestUserDetail(Const.APP_TOKEN, username)
         .onEach { result ->
             _userDetail.value = result
         }.launchIn(viewModelScope)
+
+    val requestUserListPaging
+        get() = repository
+            .requestUserList(Const.APP_TOKEN)
+            .asLiveData(viewModelScope.coroutineContext)
 
 }

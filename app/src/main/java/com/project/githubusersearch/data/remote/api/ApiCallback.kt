@@ -14,7 +14,7 @@ interface ApiCallback {
     @GET(Const.Network.USER)
     suspend fun userList(
         @Header("Authorization") token: String,
-        @Query("page") page: Int,
+        @Query("since") page: Int?,
         @Query("per_page") perPage: Int
     ): Response<List<SearchUserResponse.Item>>
 

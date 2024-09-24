@@ -4,7 +4,7 @@ import com.project.githubusersearch.data.remote.source.callback.MainSourceCallba
 import com.project.githubusersearch.data.remote.source.data.MainDataSource
 
 class MainRepository(
-    mainRemoteDataSource: MainDataSource,
+    mainRemoteDataSource: MainDataSource
 ) : MainSourceCallback {
     private val remoteDataSource = mainRemoteDataSource
 
@@ -19,4 +19,5 @@ class MainRepository(
         token: String,
         username: String
     ) = remoteDataSource.requestDetailUser(token, username)
+
 }
