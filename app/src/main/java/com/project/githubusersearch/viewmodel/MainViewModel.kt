@@ -23,8 +23,7 @@ class MainViewModel @Inject constructor(
     private var _userDetail: MutableLiveData<Result<DetailUserResponse>> = MutableLiveData()
     val userDetail: LiveData<Result<DetailUserResponse>> get() = _userDetail
 
-    val requestUserListPaging
-        get() = repository
+    fun requestUserListPaging() = repository
             .requestUserList(Const.APP_TOKEN)
             .asLiveData(viewModelScope.coroutineContext)
 

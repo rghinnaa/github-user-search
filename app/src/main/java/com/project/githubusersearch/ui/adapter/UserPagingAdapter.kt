@@ -56,6 +56,10 @@ class UserPagingAdapter :
         onItemClickListener = listener
     }
 
+    fun getItemAtPosition(position: Int): User? {
+        return getItem(position)
+    }
+
     companion object {
         private val differ = object : DiffUtil.ItemCallback<User>() {
             override fun areItemsTheSame(oldItem: User, newItem: User): Boolean =

@@ -89,7 +89,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     @SuppressLint("NotifyDataSetChanged")
     private fun initUserCallback() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.requestUserListPaging.observe(viewLifecycleOwner) { result ->
+            viewModel.requestUserListPaging().observe(viewLifecycleOwner) { result ->
                 initUserAdapter()
                 userAdapter.submitData(lifecycle, result)
                 userAdapter.notifyDataSetChanged()

@@ -65,7 +65,5 @@ inline fun <reified T> flowResponse(
         attempt <= 3 && cause is SocketTimeoutException
     }
     .catch { throwable ->
-
-        Log.e("errorCatch", "${throwable.message}")
         emit(Result.error<T>(throwable.parsedMessage, null))
     }
