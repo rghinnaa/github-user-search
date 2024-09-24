@@ -18,6 +18,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField(
+            "String",
+            "AUTH_KEY",
+            "\"${project.findProperty("AUTH_KEY")}\""
+        )
     }
 
     buildTypes {

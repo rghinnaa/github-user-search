@@ -1,8 +1,6 @@
 package com.project.githubusersearch.util
 
 object Const {
-
-    const val APP_TOKEN = "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"
     const val DATABASE = "github_user_database"
     const val DATE_FORMAT = "MMM dd, yyyy"
 

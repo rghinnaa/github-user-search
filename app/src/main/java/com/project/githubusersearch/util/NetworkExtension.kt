@@ -12,6 +12,10 @@ import retrofit2.Response
 import java.io.IOException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
+import javax.crypto.Cipher
+import javax.crypto.KeyGenerator
+import javax.crypto.SecretKey
+import javax.crypto.spec.IvParameterSpec
 
 private fun Throwable.handleException() = when (this) {
     is IOException -> "Failed to read response!"
@@ -67,3 +71,16 @@ inline fun <reified T> flowResponse(
     .catch { throwable ->
         emit(Result.error<T>(throwable.parsedMessage, null))
     }
+
+fun generateAESKey(keySize: Int = 256): SecretKey {
+    val keyGenerator = KeyGenerator.getInstance("AES")
+    keyGenerator.init(keySize)
+    return keyGenerator.generateKey()
+}
+
+fun aesDecrypt(encryptedData: ByteArray, secretKey: SecretKey): ByteArray {
+    val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
+    val ivParameterSpec = IvParameterSpec(ByteArray(16)) // Use the same IV as used in encryption
+    cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec)
+    return cipher.doFinal(encryptedData)
+}

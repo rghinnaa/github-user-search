@@ -1,12 +1,12 @@
 package com.project.githubusersearch.repository
 
+import com.project.githubusersearch.BuildConfig
 import com.project.githubusersearch.data.local.GithubUserDatabase
 import com.project.githubusersearch.data.remote.Result
 import com.project.githubusersearch.data.remote.api.ApiCallback
 import com.project.githubusersearch.data.remote.model.DetailUserResponse
 import com.project.githubusersearch.data.remote.repository.MainRepository
 import com.project.githubusersearch.data.remote.source.data.MainDataSource
-import com.project.githubusersearch.util.Const
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -38,10 +38,11 @@ class MainRepositoryTest {
         val username = "rghinnaa"
         val mockResponse = DetailUserResponse(login = username)
 
-        `when`(apiCallback.userDetail(Const.APP_TOKEN, username)).thenReturn(Response.success(mockResponse))
+        `when`(apiCallback.userDetail(
+            BuildConfig.AUTH_KEY, username)).thenReturn(Response.success(mockResponse))
 
         var usernameResult = ""
-        mainRepository.requestUserDetail(Const.APP_TOKEN, username).collect {
+        mainRepository.requestUserDetail(BuildConfig.AUTH_KEY, username).collect {
             if(it is Result.Success) {
                 usernameResult = it.results?.login.toString()
             }
