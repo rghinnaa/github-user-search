@@ -1,10 +1,12 @@
 package com.project.githubusersearch.data.di
 
 import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.project.githubusersearch.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -44,12 +46,13 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpCallback(
+        @ApplicationContext context: Context,
         interceptor: HttpLoggingInterceptor,
         cache: Cache
     ) = OkHttpClient.Builder()
         .writeTimeout(30, TimeUnit.SECONDS)
         .readTimeout(20, TimeUnit.SECONDS)
-        .addInterceptor(interceptor)
+        .addInterceptor(ChuckerInterceptor(context))
         .addInterceptor{
             val authorisedRequest : Request = it.request().newBuilder()
                 .build()

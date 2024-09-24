@@ -70,8 +70,6 @@ dependencies {
     implementation(libs.androidx.room.paging)
 
     implementation(libs.glide)
-    implementation(libs.core.ktx)
-    implementation(libs.androidx.junit.ktx)
     implementation(libs.androidx.runner)
 
     ksp(libs.glide.compiler)
@@ -84,4 +82,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.rule)
+
+    debugImplementation(libs.chucker)
+    releaseImplementation(libs.chucker.no.op)
 }

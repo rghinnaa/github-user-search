@@ -26,6 +26,7 @@ glide = "4.13.0"
 coreKtxVersion = "1.6.1"
 junitKtx = "1.2.1"
 runner = "1.6.2"
+chucker = "4.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -63,6 +64,8 @@ glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", versi
 core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "coreKtxVersion" }
 androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
 androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
+chucker = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "chucker"}
+chucker-no-op = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "chucker"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
