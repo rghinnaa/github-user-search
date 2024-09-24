@@ -13,6 +13,8 @@ import com.project.githubusersearch.databinding.FragmentSearchBinding
 import com.project.githubusersearch.ui.adapter.PagingLoadStateAdapter
 import com.project.githubusersearch.ui.adapter.SearchPagingAdapter
 import com.project.githubusersearch.ui.adapter.UserPagingAdapter
+import com.project.githubusersearch.util.addDelayOnTypeWithScope
+import com.project.githubusersearch.util.drawable
 import com.project.githubusersearch.util.hideKeyboard
 import com.project.githubusersearch.util.navController
 import com.project.githubusersearch.util.navigateOrNull
@@ -34,8 +36,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private val onImeSearchClicked = TextView.OnEditorActionListener { v, actionId, _ ->
         if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-            val searchText = binding.etSearch.text.toString()
-            searchEvent(v, searchText)
+            searchEvent(v, binding.etSearch.text.toString())
 
             return@OnEditorActionListener true
         }
@@ -51,6 +52,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun initView() {
         initSearchImeOption()
+        initSearchDelayOnType()
         initUserCallback()
     }
 
@@ -61,6 +63,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
         searchAdapter.setOnItemClickListener {
             binding.etSearch.setText("")
+            activity?.hideKeyboard(binding.etSearch)
             navController.navigateOrNull(
                 SearchFragmentDirections.actionUserDetail(it.login)
             )
@@ -74,6 +77,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
         userAdapter.setOnItemClickListener {
             binding.etSearch.setText("")
+            binding.etSearch.clearFocus()
+            activity?.hideKeyboard(binding.etSearch)
+
             navController.navigateOrNull(
                 SearchFragmentDirections.actionUserDetail(it.username)
             )
@@ -106,6 +112,20 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         binding.etSearch.apply {
             clearFocus()
             setOnEditorActionListener(onImeSearchClicked)
+        }
+    }
+
+    private fun initSearchDelayOnType() {
+        binding.etSearch.addDelayOnTypeWithScope(200, viewLifecycleOwner.lifecycleScope) {
+            binding.boxSearch.endIconDrawable = context?.drawable(
+                if (binding.etSearch.text.isNullOrEmpty()) R.drawable.ic_search else R.drawable.ic_close
+            )
+        }
+        binding.boxSearch.setEndIconOnClickListener {
+            if (!binding.etSearch.text.isNullOrEmpty()) {
+                binding.etSearch.text?.clear()
+                initUserCallback()
+            }
         }
     }
 

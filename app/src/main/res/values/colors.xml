@@ -2,5 +2,5 @@
 <resources>
     <color name="black">#1f2328</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="done_muted">#231F39</color>
+    <color name="done_muted">#8F8CA3</color>
 </resources>
